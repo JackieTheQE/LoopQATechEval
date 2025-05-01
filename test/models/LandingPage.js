@@ -8,6 +8,7 @@ class LandingPage {
         this.logoutButton = 'button:has-text("Logout")';
         this.columnDiv = 'div[class*="bg-gray-50"]';
         this.cardDiv = 'div[class*="bg-white"]';
+        this.tagSpan= 'span[class*="py-1"]'
 
         //functions
         this.locateColumn = async function(columnText) {
@@ -22,7 +23,14 @@ class LandingPage {
 
         this.verifyCard = async function (columnText, cardText) {
             const column = await this.locateColumn(columnText);
-            await expect(await this.locateCard(column, cardText)).toBeVisible();
+            const card = await this.locateCard(column, cardText);
+            await expect(card).toBeVisible();
+            return card;
+        }
+
+        this.verifyTag = async function (card, tagText) {
+            const tag = await card.locator(this.page.locator(this.tagSpan).filter({hasText: tagText}))
+            await expect(tag).toBeVisible();
         }
 
         this.pageLoaded = async function () {
