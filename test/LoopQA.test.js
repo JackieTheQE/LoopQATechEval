@@ -6,6 +6,7 @@ test('Implement user Authentication present in To Do column', async ({ page }) =
     const loginPage = new LoginPage(page);
     await loginPage.goTo();
     const landingPage = await loginPage.login();
+    await landingPage.switchTab("Web Application");
     await landingPage.verifyCard("To Do", "Implement user authentication");
 
 });
@@ -15,6 +16,7 @@ test('Fix navigation bug is present in To Do column', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goTo();
     const landingPage = await loginPage.login();
+    await landingPage.switchTab("Web Application");
     await landingPage.verifyCard("To Do", "Fix navigation bug");
 });
 
@@ -23,16 +25,37 @@ test('Design system updates is present in In Progress column', async ({ page }) 
     const loginPage = new LoginPage(page);
     await loginPage.goTo();
     const landingPage = await loginPage.login();
+    await landingPage.switchTab("Web Application");
     const card = await landingPage.verifyCard("In Progress", "Design system updates");
     await landingPage.verifyTag(card, "Design");
 });
 
 // Test 4 - Placeholder
-test('Test 4 - Description of the test', async ({ page }) => {
-    // Add your test implementation here
+test('Push Notification system is present in To Do column of Mobile Application', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goTo();
+    const landingPage = await loginPage.login();
+    await landingPage.switchTab("Mobile Application");
+    const card = await landingPage.verifyCard("To Do", "Push notification system");
+    await landingPage.verifyTag(card, "Feature");
 });
 
 // Test 5 - Placeholder
-test('Test 5 - Description of the test', async ({ page }) => {
-    // Add your test implementation here
+test('Offline mode is present in the In Progress column of Mobile Application', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goTo();
+    const landingPage = await loginPage.login();
+    await landingPage.switchTab("Mobile Application");
+    const card = await landingPage.verifyCard("In Progress", "Offline mode");
+    await landingPage.verifyTag(card, "Feature");
+    await landingPage.verifyTag(card, "High Priority");
+});
+
+test('App icon design is in the Done column of Mobile Application', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goTo();
+    const landingPage = await loginPage.login();
+    await landingPage.switchTab("Mobile Application");
+    const card = await landingPage.verifyCard("Done", "App icon design");
+    await landingPage.verifyTag(card, "Design");
 });

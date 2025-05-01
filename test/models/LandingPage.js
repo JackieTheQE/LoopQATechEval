@@ -9,8 +9,20 @@ class LandingPage {
         this.columnDiv = 'div[class*="bg-gray-50"]';
         this.cardDiv = 'div[class*="bg-white"]';
         this.tagSpan= 'span[class*="py-1"]'
+        this.tabButton = 'button[class*="bg-gray-700"]';
 
         //functions
+        /**
+         * Switches to the desired tab and verifies the page has been reloaded.
+         * @param tabText text of tab to be searched for.
+         * @returns {Promise<void>}
+         */
+        this.switchTab = async function (tabText) {
+            const tab = this.page.locator(this.tabButton, {has: page.locator(`h2:has-text("${tabText}")`)})
+            await expect(tab).toBeVisible();
+            await tab.click();
+            await this.pageLoaded();
+        }
         /**
          * Verifies and returns a column in the page based on the header text
          * @param columnText Column header text to search for
