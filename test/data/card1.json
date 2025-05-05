@@ -1,0 +1,10 @@
+{
+  "tab": "Web Application",
+  "column": "To Do",
+  "header": "Implement user authentication",
+  "description": "Add login and signup functionality",
+  "tags" : [
+    "Feature",
+    "High Priority"
+    ]
+}

@@ -78,6 +78,18 @@ class LandingPage {
             await this.page.waitForLoadState('domcontentloaded');
             await this.page.waitForLoadState('networkidle');
         }
+        /**
+         * Verifies the project, column, card, and tags of a given test object.
+         * @param testObject JSON object with required attributes
+         * @returns {Promise<void>}
+         */
+        this.verifyTestData = async function (testObject) {
+            await this.switchTab(testObject.tab);
+            const card = await this.verifyCard(testObject.column, testObject.header);
+            for (const tag of testObject.tags) {
+                await this.verifyTag(card, tag);
+            }
+        }
 
     }
 }

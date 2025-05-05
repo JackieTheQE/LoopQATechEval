@@ -1,5 +1,6 @@
 const { test} = require('@playwright/test');
 const LoginPage = require('./models/LoginPage.js');
+import testCard1 from './data/card1.json';
 
 test('Implement user Authentication present in To Do column', async ({ page }) => {
     //setup
@@ -84,3 +85,13 @@ test('App icon design is in the Done column of Mobile Application', async ({ pag
     const card = await landingPage.verifyCard("Done", "App icon design");
     await landingPage.verifyTag(card, "Design");
 });
+
+test('Verify data of card1 of test data', async ({ page }) => {
+    // setup
+    const loginPage = new LoginPage(page);
+    await loginPage.goTo();
+    const landingPage = await loginPage.login();
+
+    //verify data
+    await landingPage.verifyTestData(testCard1);
+})
